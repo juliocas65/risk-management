@@ -1,0 +1,19 @@
+{
+  "name": "risk-management",
+  "version": "1.0.0",
+  "description": "Node application to manage the risk client service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juliocas65/risk-management.git"
+  },
+  "author": "Julio Castillo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/juliocas65/risk-management/issues"
+  },
+  "homepage": "https://github.com/juliocas65/risk-management#readme"
+}
