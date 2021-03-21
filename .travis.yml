@@ -25,6 +25,10 @@ script:
   - npm run test:unit
   - npm run test:cov
   - npm run lint
+  - echo $TRAVIS_BUILD_DIR
+  - echo $DOCKER_USERNAME
+  - echo $DOCKER_IMAGE_NAME
+  - echo $K8S_DEPLOYMENT_NAME
   - docker run -v ${TRAVIS_BUILD_DIR}:/public ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME} ${DOCKER_IMAGE_NAME} /public
 after_script:
   - docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID} Dockerfile .
@@ -36,4 +40,5 @@ after_script:
   - sed -i -e 's|KUBE_ADMIN_CERT|'"${KUBE_ADMIN_CERT}"'|g' kubeconfig
   - sed -i -e 's|KUBE_ADMIN_KEY|'"${KUBE_ADMIN_KEY}"'|g' kubeconfig
   - sed -i -e 's|KUBE_USERNAME|'"${KUBE_USERNAME}"'|g' kubeconfig
+  - echo kubeconfig
   - docker run -v ${TRAVIS_BUILD_DIR}:/kube kubectl --kubeconfig /kube/kubeconfig set image deployment/${K8S_DEPLOYMENT_NAME} ${K8S_DEPLOYMENT_NAME}=${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:$TRAVIS_BUILD_ID
