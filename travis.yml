@@ -1,0 +1,25 @@
+language: node_js
+os: osx
+
+git:
+  depth: 3
+
+branches:
+  only:
+  - master
+
+install:
+  - yarn install
+
+jobs:
+  include:
+    - stage: test
+      script: yarn test
+      script: yarn lint
+    - stage: deploy
+      script: yarn deploy
+
+deploy:
+  provider: heroku
+  on
+    repo: juliocas65/risk-management
