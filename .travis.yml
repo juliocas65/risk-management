@@ -18,14 +18,12 @@ notifications:
     on_success: always
     on_failure: always
 before_script:
-  - curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/
   - docker pull ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}
   - docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
 script:
   - npm run test:unit
   - npm run test:cov
   - npm run lint
-  - docker run -v ${TRAVIS_BUILD_DIR} juliocas/risk-management
 after_script:
   - docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID} Dockerfile .
   - docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
