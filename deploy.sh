@@ -4,7 +4,7 @@ echo "$KUBE_CA_CERT" | base64 --decode > cert.crt
 echo "$KUBE_ENDPOINT"
 echo "$KUBE_USERNAME"
 
-/usr/local/bin/kubectl
+/usr/local/bin/kubectl \
   --kubeconfig=/dev/null \
   --server=$KUBE_ENDPOINT \
   --certificate-authority=cert.crt \
