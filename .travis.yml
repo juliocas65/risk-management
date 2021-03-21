@@ -31,4 +31,9 @@ after_script:
   - docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
   - docker tag ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID} ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest
   - docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest
-  - /usr/local/bin/kubectl --kubeconfig=/dev/null --server=$KUBE_ENDPOINT --certificate-authority=$KUBE_CA_CERT apply -f ./kubernetes/k8s-application-deployment.yml
+
+deploy:
+  provider: script
+  script: bash deploy.sh
+  on:
+    branch: main
