@@ -25,12 +25,7 @@ script:
   - npm run test:unit
   - npm run test:cov
   - npm run lint
-  - echo $TRAVIS_BUILD_DIR
-  - echo $DOCKER_USERNAME
-  - echo $DOCKER_IMAGE_NAME
-  - echo $K8S_DEPLOYMENT_NAME
-  - echo $TRAVIS_BUILD_ID
-  - docker run -v ${TRAVIS_BUILD_DIR}:/risk_root juliocas/risk-management risk-management -s /risk_root
+  - docker run -v ${TRAVIS_BUILD_DIR} juliocas/risk-management risk-management -s /risk_root
 after_script:
   - docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID} Dockerfile .
   - docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
