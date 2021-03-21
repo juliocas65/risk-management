@@ -25,7 +25,7 @@ script:
   - npm run test:unit
   - npm run test:cov
   - npm run lint
-  - docker run -v ${TRAVIS_BUILD_DIR} juliocas/risk-management .
+  - docker run -v ${TRAVIS_BUILD_DIR} juliocas/risk-management
 after_script:
   - docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID} Dockerfile .
   - docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
