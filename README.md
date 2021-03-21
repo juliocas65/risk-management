@@ -32,8 +32,8 @@ eksctl create iamserviceaccount \
   kubectl get deployment -n kube-system aws-load-balancer-controller -oyaml |grep "juliocas"
 
 
-  export KUBE_CA_CERT=$(kubectl config view --flatten --output=json | jq --raw-output '.clusters[0] .cluster ["certificate-authority-data"]')
-  export KUBE_ENDPOINT=$(kubectl config view --flatten --output=json | jq --raw-output '.clusters[0] .cluster ["server"]')
+  export KUBE_CA_CERT=$(kubectl config view --flatten --output=json | jq --raw-output '.clusters[1] .cluster ["certificate-authority-data"]')
+  export KUBE_ENDPOINT=$(kubectl config view --flatten --output=json | jq --raw-output '.clusters[1] .cluster ["server"]')
   export KUBE_ADMIN_CERT=$(kubectl config view --flatten --output=json | jq --raw-output '.users[1] .user ["client-certificate-data"]')
-  export KUBE_ADMIN_KEY=$(kubectl config view --flatten --output=json | jq --raw-output '.users[0] .user ["client-key-data"]')
-  export KUBE_USERNAME=$(kubectl config view --flatten --output=json | jq --raw-output '.users[0] .user ["username"]')
+  export KUBE_ADMIN_KEY=$(kubectl config view --flatten --output=json | jq --raw-output '.users[1] .user ["client-key-data"]')
+  export KUBE_USERNAME=$(kubectl config view --flatten --output=json | jq --raw-output '.users[1] .user ["username"]')
