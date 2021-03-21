@@ -1,9 +1,10 @@
 #!/bin/bash
 
 echo "$KUBE_CA_CERT" | base64 --decode > cert.crt
-echo "$KUBE_ENDPOINT"
-echo "$KUBE_USERNAME"
-echo "$TRAVIS_BUILD_NUMBER"
+echo "APP VERSION: $TRAVIS_BUILD_NUMBER"
+
+sed -i "s/VERSION/${TRAVIS_BUILD_NUMBER}/g" kubernetes/k8s-application-deployment.yml
+cat kubernetes/k8s-application-deployment.yml
 
 /usr/local/bin/kubectl \
   --kubeconfig=/dev/null \

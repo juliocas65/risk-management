@@ -16,7 +16,7 @@ spec:
         app: risk-management-app
     spec:
       containers:
-      - image: juliocas/risk-management:latest
+      - image: juliocas/risk-management:VERSION
         imagePullPolicy: Always
         name: risk-management-app
         ports:
