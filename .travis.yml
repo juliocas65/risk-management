@@ -18,7 +18,7 @@ notifications:
     on_success: always
     on_failure: always
 before_script:
-  - docker pull ${DOCKER_USERNAME}/kubectl
+  - docker pull smesch/kubectl
   - docker pull ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}
   - docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
 script:
@@ -35,4 +35,4 @@ after_script:
   - sed -i -e 's|KUBE_ADMIN_CERT|'"${KUBE_ADMIN_CERT}"'|g' kubeconfig
   - sed -i -e 's|KUBE_ADMIN_KEY|'"${KUBE_ADMIN_KEY}"'|g' kubeconfig
   - sed -i -e 's|KUBE_USERNAME|'"${KUBE_USERNAME}"'|g' kubeconfig
-  - docker run -v ${TRAVIS_BUILD_DIR}:/kube juliocas/kubectl --kubeconfig /kube/kubeconfig set image deployment/${K8S_DEPLOYMENT_NAME} ${K8S_DEPLOYMENT_NAME}=${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:$TRAVIS_BUILD_ID
+  - docker run -v ${TRAVIS_BUILD_DIR}:/kube smesch/kubectl kubectl --kubeconfig /kube/kubeconfig set image deployment/${K8S_DEPLOYMENT_NAME} ${K8S_DEPLOYMENT_NAME}=${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:$TRAVIS_BUILD_ID
