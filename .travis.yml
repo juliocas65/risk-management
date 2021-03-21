@@ -8,9 +8,9 @@ os:
 - linux
 env:
   global:
-    - DOCKER_USERNAME="juliocas"
-    - DOCKER_IMAGE_NAME="risk-management"
-    - K8S_DEPLOYMENT_NAME="risk-management-deployment"
+    - DOCKER_USERNAME=juliocas
+    - DOCKER_IMAGE_NAME=risk-management
+    - K8S_DEPLOYMENT_NAME=risk-management-deployment
 notifications:
   email:
     recipients:
