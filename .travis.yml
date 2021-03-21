@@ -18,7 +18,7 @@ script:
   - npm run test:unit
   - npm run test:cov
   - npm run lint
-after_script:
+before_deploy:
   - docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
   - docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID} -f Dockerfile .
   - docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}

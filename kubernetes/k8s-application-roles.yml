@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: cicd
+  name: default
   namespace: risk-management
 ---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: cicd
+  name: default
   namespace: risk-management
 rules:
   - apiGroups: ["", "apps", "batch", "extensions"]
@@ -17,13 +17,13 @@ rules:
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: cicd
+  name: default
   namespace: risk-management
 subjects:
   - kind: ServiceAccount
-    name: cicd
+    name: default
     namespace: risk-management
 roleRef:
   kind: Role
-  name: cicd
+  name: default
   apiGroup: rbac.authorization.k8s.io
