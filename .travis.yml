@@ -1,32 +1,27 @@
+language: node_js
 services:
   - docker
-
 os:
 - linux
-
 env:
   global:
     - DOCKER_USERNAME="juliocas"
     - DOCKER_IMAGE_NAME="risk-management"
     - K8S_DEPLOYMENT_NAME="risk-management-deployment"
-
 notifications:
   email:
     recipients:
       - juliocas65@gmail.com
     on_success: always
     on_failure: always
-
 before_script:
   - docker pull ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}
   - docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
-
 script:
   - npm run test:unit
   - npm run test:cov
   - npm run lint
   - docker run -v ${TRAVIS_BUILD_DIR}:/${DOCKER_IMAGE_NAME} ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME} -s /${DOCKER_IMAGE_NAME}
-
 after_script:
   - docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID} .
   - docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
