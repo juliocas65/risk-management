@@ -8,7 +8,7 @@ echo "$KUBE_USERNAME"
   --kubeconfig=/dev/null \
   --server=$KUBE_ENDPOINT \
   --certificate-authority=cert.crt \
-  --username=$KUBE_USERNAME \
+  --token=$KUBE_TOKEN \
   apply -f kubernetes/k8s-application-deployment.yml
 
 echo "The deploy is Ready"
