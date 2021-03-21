@@ -31,9 +31,4 @@ after_script:
   - docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
   - docker tag ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID} ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest
   - docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest
-
-deploy:
-  provider: script
-  script: bash deploy.sh
-  on:
-    branch: main
+  - bash deploy.sh
