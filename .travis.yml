@@ -29,7 +29,7 @@ script:
   - echo $DOCKER_USERNAME
   - echo $DOCKER_IMAGE_NAME
   - echo $K8S_DEPLOYMENT_NAME
-  - docker run -v ${TRAVIS_BUILD_DIR}:/public ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME} ${DOCKER_IMAGE_NAME} /public
+  - docker run -v ${TRAVIS_BUILD_DIR}/ ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME} ${DOCKER_IMAGE_NAME} /public
 after_script:
   - docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID} Dockerfile .
   - docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
