@@ -12,4 +12,11 @@ echo "$TRAVIS_BUILD_NUMBER"
   --token=$KUBE_TOKEN \
   apply -f kubernetes/k8s-application-deployment.yml
 
+/usr/local/bin/kubectl \
+  --kubeconfig=/dev/null \
+  --server=$KUBE_ENDPOINT \
+  --certificate-authority=cert.crt \
+  --token=$KUBE_TOKEN \
+  set image deployment/risk-management risk-management=$DOCKER_USER/risk-management:${TRAVIS_BUILD_NUMBER} --record
+
 echo "The deploy is Ready"
