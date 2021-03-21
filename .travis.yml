@@ -11,13 +11,14 @@ env:
     - DOCKER_USERNAME=juliocas
     - DOCKER_IMAGE_NAME=risk-management
     - K8S_DEPLOYMENT_NAME=risk-management-deployment
+before_script:
+  - curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+  - chmod +x kubectl && sudo mv kubectl /usr/local/bin/kubectl
 script:
   - npm run test:unit
   - npm run test:cov
   - npm run lint
-before_install:
-  - curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
-  - chmod +x kubectl && sudo mv kubectl /usr/local/bin/kubectl
+after_script:
   - docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
   - docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID} -f Dockerfile .
   - docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
