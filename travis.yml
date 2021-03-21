@@ -1,24 +1,16 @@
-sudo: enabled
-
-language: "node_js"
-
-node_js:
-  - '12'
-
-os:
-  - linux
+sudo: required
 
 services:
-  – docker
+  - docker
+
+os:
+- linux
 
 env:
   global:
     - DOCKER_USERNAME="juliocas"
     - DOCKER_IMAGE_NAME="risk-management"
-    - K8S_DEPLOYMENT_NAME="risk-management-deployment"
-
-git:
-  depth: 3
+    - K8S_DEPLOYMENT_NAME="risk-management-deployment
 
 notifications:
   email:
