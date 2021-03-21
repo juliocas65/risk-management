@@ -29,7 +29,8 @@ script:
   - echo $DOCKER_USERNAME
   - echo $DOCKER_IMAGE_NAME
   - echo $K8S_DEPLOYMENT_NAME
-  - docker run -v ${TRAVIS_BUILD_DIR}/ ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME} ${DOCKER_IMAGE_NAME} /public
+  - echo $TRAVIS_BUILD_ID
+  - docker run -v ${TRAVIS_BUILD_DIR}:/risk_root juliocas/risk-management risk-management -s /risk_root
 after_script:
   - docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID} Dockerfile .
   - docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
@@ -40,5 +41,4 @@ after_script:
   - sed -i -e 's|KUBE_ADMIN_CERT|'"${KUBE_ADMIN_CERT}"'|g' kubeconfig
   - sed -i -e 's|KUBE_ADMIN_KEY|'"${KUBE_ADMIN_KEY}"'|g' kubeconfig
   - sed -i -e 's|KUBE_USERNAME|'"${KUBE_USERNAME}"'|g' kubeconfig
-  - echo kubeconfig
   - docker run -v ${TRAVIS_BUILD_DIR}:/kube kubectl --kubeconfig /kube/kubeconfig set image deployment/${K8S_DEPLOYMENT_NAME} ${K8S_DEPLOYMENT_NAME}=${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:$TRAVIS_BUILD_ID
