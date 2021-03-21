@@ -17,6 +17,8 @@ notifications:
     on_success: always
     on_failure: always
 before_script:
+  - curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl && \
+      chmod +x kubectl && sudo mv kubectl /usr/local/bin/
   - docker pull ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}
   - docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
 script:
@@ -34,4 +36,4 @@ after_script:
   - sed -i -e 's|KUBE_ADMIN_CERT|'"${KUBE_ADMIN_CERT}"'|g' kubeconfig
   - sed -i -e 's|KUBE_ADMIN_KEY|'"${KUBE_ADMIN_KEY}"'|g' kubeconfig
   - sed -i -e 's|KUBE_USERNAME|'"${KUBE_USERNAME}"'|g' kubeconfig
-  - docker run -v ${TRAVIS_BUILD_DIR}:/kube ${DOCKER_USERNAME}/kubectl kubectl --kubeconfig /kube/kubeconfig set image deployment/${K8S_DEPLOYMENT_NAME} ${K8S_DEPLOYMENT_NAME}=${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:$TRAVIS_BUILD_ID
+  - docker run -v ${TRAVIS_BUILD_DIR}:/kube kubectl --kubeconfig /kube/kubeconfig set image deployment/${K8S_DEPLOYMENT_NAME} ${K8S_DEPLOYMENT_NAME}=${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:$TRAVIS_BUILD_ID
