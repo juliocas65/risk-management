@@ -1,0 +1,56 @@
+[
+  {
+    "id": "1",
+    "firstName": "Jose",
+    "lastName": "Linares",
+    "idNumber": "123456-A",
+    "balance": 60000,
+    "isBlackList": false,
+    "isActive": true
+  },
+  {
+    "id": "2",
+    "firstName": "Carlos",
+    "lastName": "Smith",
+    "idNumber": "123456-B",
+    "balance": 2000,
+    "isBlackList": false,
+    "isActive": true
+  },
+  {
+    "id": "3",
+    "firstName": "Ana",
+    "lastName": "Marquez",
+    "idNumber": "123456-C",
+    "balance": 0,
+    "isBlackList": true,
+    "isActive": true
+  },
+  {
+    "id": "4",
+    "firstName": "Anthony",
+    "lastName": "Rios",
+    "idNumber": "123456-D",
+    "balance": -45000,
+    "isBlackList": false,
+    "isActive": false
+  },
+  {
+    "id": "5",
+    "firstName": "Jhon",
+    "lastName": "Carter",
+    "idNumber": "123456-E",
+    "balance": 0,
+    "isBlackList": false,
+    "isActive": true
+  },
+  {
+    "id": "6",
+    "firstName": "Pedro",
+    "lastName": "Lopez",
+    "idNumber": "123456-F",
+    "balance": 0,
+    "isBlackList": true,
+    "isActive": true
+  }
+]

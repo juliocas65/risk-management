@@ -2,31 +2,31 @@
   {
     "id": "1",
     "name": "Adidas",
-    "active": true
+    "isActive": true
   },
   {
     "id": "2",
     "name": "Nike",
-    "active": true
+    "isActive": true
   },
   {
     "id": "3",
     "name": "Puma",
-    "active": true
+    "isActive": true
   },
   {
     "id": "4",
     "name": "Rebook",
-    "active": true
+    "isActive": true
   },
   {
     "id": "5",
     "name": "Diadora",
-    "active": false
+    "isActive": false
   },
   {
     "id": "6",
     "name": "Underamour",
-    "active": true
+    "isActive": true
   }
 ]

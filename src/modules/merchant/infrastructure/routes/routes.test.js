@@ -1,9 +1,13 @@
 'use strict'
-// const request = require('supertest')
-// const server = require('././../../../../../server')
+const request = require('supertest')
+const server = require('../../../../../server')
 
-/* describe('Merchant :: Routes ::', () => {
+describe('Merchant :: Routes ::', () => {
   describe('GET /:id', () => {
+    afterAll(done => {
+      server.close();
+      done();
+    })
      it('should return a merchant sucessfully', async () => {
       const id = '1'
       const result = await request(server).get(`/merchant/${id}`)
@@ -17,4 +21,4 @@
       expect(result.body.message).toEqual('NO_RESULTS_AVAILABLE')
     })
   })
-})*/
+})
