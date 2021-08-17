@@ -1,3 +1,3 @@
 # Risk Management
 
-### Kubernetes Steps
+This project simulates an risk engine acquiring financial products.
